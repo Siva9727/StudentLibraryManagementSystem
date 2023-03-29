@@ -9,7 +9,7 @@ import lombok.Setter;
 public class Student {
     @Id // primary key set.
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto generate id.
-    @Getter
+    @Getter // lombook annotation
     @Setter
     private int id;
     @Getter
