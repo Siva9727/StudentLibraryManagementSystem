@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StudentService {
-    //autowire the student repository
+    //auto-wire the student repository
     @Autowired
     StudentRepository studentRepository;
 
@@ -20,8 +20,17 @@ public class StudentService {
         Card card = new Card();
         card.setCardStatus(CardStatus.ACTIVATED);
 
-        card.setStudentVariableName(student);
+        card.setStudentVariableName(student);  // foreign key attribute
 
-        return "";
+        // let's check student
+        student.setCard(card);
+
+        // if there was uni-directional mapping. Then we have to save both of them.
+        // However, we are using bidirectional mapping.Child will automatically saved
+        studentRepository.save(student);
+        // By cascading effect, Child will automatically get saved
+
+
+        return "Student and card added";
     }
 }

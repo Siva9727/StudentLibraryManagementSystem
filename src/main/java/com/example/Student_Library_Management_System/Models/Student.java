@@ -32,6 +32,8 @@ public class Student {
     // for Bi-directional relation
     // name of the variable of the parent entity that you have written in child class
     @OneToOne(mappedBy = "studentVariableName",cascade = CascadeType.ALL)
+    @Getter
+    @Setter
     private Card card;
 
     public Student() {
