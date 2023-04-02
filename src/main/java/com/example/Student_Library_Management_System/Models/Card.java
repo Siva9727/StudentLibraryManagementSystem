@@ -7,7 +7,9 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "card")
@@ -15,10 +17,17 @@ public class Card {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
     private int id;
+
+    @Getter
+    @Setter
     @CreationTimestamp // automatically saves the time of creation
     Date createdOn;
 
+    @Getter
+    @Setter
     @UpdateTimestamp  // sets time when an entry is updated
     Date updatedOn;
 
@@ -27,8 +36,7 @@ public class Card {
     @Setter
     private CardStatus cardStatus;
 
-    public Card() {
-    }
+
 
     // unidirectional relation
     @OneToOne
@@ -37,6 +45,13 @@ public class Card {
     @Setter
     Student studentVariableName;
 
+    // map wrt book entity
+    // here card is parent and start bidirectional relationship
+    @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
+    private List<Book> booksIssued;
 
 
+    public Card() {
+        booksIssued = new ArrayList<>();
+    }
 }

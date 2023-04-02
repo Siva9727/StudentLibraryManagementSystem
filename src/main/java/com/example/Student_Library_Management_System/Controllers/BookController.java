@@ -1,7 +1,7 @@
 package com.example.Student_Library_Management_System.Controllers;
 
-import com.example.Student_Library_Management_System.Models.Student;
-import com.example.Student_Library_Management_System.Services.StudentService;
+import com.example.Student_Library_Management_System.Models.Book;
+import com.example.Student_Library_Management_System.Services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,14 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("student")
-public class StudentController {
-    @Autowired
-    StudentService studentService;
+@RequestMapping("book")
+public class BookController {
 
-    //to add the student
-    @PostMapping("/add")
-    public String createStudent(@RequestBody Student student){
-        return studentService.createStudent(student);
+    @Autowired
+    BookService bookService;
+
+    //to create book we need post mapping
+    @PostMapping("add")
+    public String addBook(@RequestBody Book book){
+
+        return bookService.addBook(book);
     }
+
+
 }

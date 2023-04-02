@@ -9,22 +9,27 @@ import lombok.Setter;
 public class Student {
     @Id // primary key set.
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto generate id.
-    @Getter // lombook annotation
+    @Getter // lombok annotation
     @Setter
     private int id;
+
     @Getter
     @Setter
     private String name;
+
     @Column(unique = true) // email address will be unique.
     @Getter
     @Setter
     private String email;
+
     @Getter
     @Setter
     private String mobNo;
+
     @Getter
     @Setter
     private int age;
+
     @Getter
     @Setter
     private String country;
