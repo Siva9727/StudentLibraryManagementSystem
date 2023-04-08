@@ -2,6 +2,7 @@ package com.example.Student_Library_Management_System.Models;
 
 import com.example.Student_Library_Management_System.Enums.CardStatus;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "card")
+@Data
 public class Card {
 
     @Id
@@ -48,10 +50,15 @@ public class Card {
     // map wrt book entity
     // here card is parent and start bidirectional relationship
     @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
-    private List<Book> booksIssued;
+    private List<Book> booksIssued = new ArrayList<>();
 
 
     public Card() {
-        booksIssued = new ArrayList<>();
+
     }
+
+    // map wrt to transaction
+    // bidirectional one
+    @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
+    private List<Transactions> transactionsList=new ArrayList<>();
 }

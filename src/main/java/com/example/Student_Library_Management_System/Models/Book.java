@@ -2,11 +2,16 @@ package com.example.Student_Library_Management_System.Models;
 
 import com.example.Student_Library_Management_System.Enums.Genre;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "book")
+@Data
 public class Book {
 
     @Id
@@ -57,4 +62,9 @@ public class Book {
 
     public Book() {
     }
+
+
+    // bidirectional mapping with transaction
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    private List<Transactions> transactionsList = new ArrayList<>();
 }

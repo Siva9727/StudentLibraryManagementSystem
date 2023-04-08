@@ -1,5 +1,6 @@
 package com.example.Student_Library_Management_System.Services;
 
+import com.example.Student_Library_Management_System.DTOs.StudentUpdateMobRequestDto;
 import com.example.Student_Library_Management_System.Enums.CardStatus;
 import com.example.Student_Library_Management_System.Models.Card;
 import com.example.Student_Library_Management_System.Models.Student;
@@ -28,7 +29,7 @@ public class StudentService {
         student.setCard(card);
 
         // if there was uni-directional mapping. Then we have to save both of them.
-        // However, we are using bidirectional mapping.Child will automatically saved
+        // However, we are using bidirectional mapping.Child will automatically get saved
         studentRepository.save(student);
         // By cascading effect, Child will automatically get saved
 
@@ -42,13 +43,21 @@ public class StudentService {
         return student.getName();
     }
 
-    public String updateMobNo(Student newStudent){
+    public String updateMobNo(StudentUpdateMobRequestDto studentReq){
+
+        // Convert the DTO to entity : to save better
+
+
+
+
 
         // first we will try to fetch original data
-        Student originalStudent = studentRepository.findById(newStudent.getId()).get();
+        Student originalStudent = studentRepository.findById(studentReq.getId()).get();
 
         // We will keep the other properties as it is and only change the required attributes
-        originalStudent.setMobNo(newStudent.getMobNo());
+        originalStudent.setMobNo(studentReq.getMobNo());
+
+        // Always entity object is being saved.
 
         studentRepository.save(originalStudent);
 
