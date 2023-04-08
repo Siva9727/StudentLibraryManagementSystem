@@ -38,9 +38,9 @@ public class Author {
     @Getter
     @Setter
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
-    private List<Book> booksWritten;
+    private List<Book> booksWritten = new ArrayList<>();;
 
     public Author() {
-        booksWritten = new ArrayList<>();
+
     }
 }

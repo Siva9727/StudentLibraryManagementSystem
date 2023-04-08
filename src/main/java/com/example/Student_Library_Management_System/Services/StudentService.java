@@ -7,6 +7,8 @@ import com.example.Student_Library_Management_System.Repositories.StudentReposit
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentService {
     //auto-wire the student repository
@@ -32,5 +34,28 @@ public class StudentService {
 
 
         return "Student and card added";
+    }
+
+    public String getNameByEmail(String email){
+        Student student = studentRepository.findByEmail(email);
+
+        return student.getName();
+    }
+
+    public String updateMobNo(Student newStudent){
+
+        // first we will try to fetch original data
+        Student originalStudent = studentRepository.findById(newStudent.getId()).get();
+
+        // We will keep the other properties as it is and only change the required attributes
+        originalStudent.setMobNo(newStudent.getMobNo());
+
+        studentRepository.save(originalStudent);
+
+        return "mobile number updated";
+    }
+
+    public List<Student> studentListByCountry(String country){
+        return studentRepository.findByCountry(country);
     }
 }

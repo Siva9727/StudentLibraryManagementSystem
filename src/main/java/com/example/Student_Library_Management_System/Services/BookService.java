@@ -37,12 +37,19 @@ public class BookService {
         List<Book> currentBooksWritten = author.getBooksWritten();
         currentBooksWritten.add(book);
 
-        author.setBooksWritten(currentBooksWritten);
+
 
         // Now the book is to be saved, but also author is also to be saved
+        // Since the author is updated. we have to update or re-save the author entity
+
+        authorRepository.save(author);  // Date modified
+        // .save function works both as saving and update
+
+        // bookRepo is not called bcz it will be auto called because of the cascading effect
 
 
-        return " ";
+
+        return "Book added successfully";
 
     }
 }

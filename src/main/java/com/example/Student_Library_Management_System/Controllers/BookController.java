@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("book")
+@RequestMapping("/book")
 public class BookController {
 
     @Autowired
     BookService bookService;
 
     //to create book we need post mapping
-    @PostMapping("add")
+    @PostMapping("/add")
     public String addBook(@RequestBody Book book){
 
         return bookService.addBook(book);

@@ -21,11 +21,11 @@ public class Book {
 
     @Getter
     @Setter
-    @Enumerated(value = EnumType.STRING)
     private int pages;
 
     @Getter
     @Setter
+    @Enumerated(value = EnumType.STRING)
     private Genre genre;
 
 
@@ -49,6 +49,10 @@ public class Book {
     @ManyToOne
     @JoinColumn
     private Card card;
+
+    @Getter
+    @Setter
+    private boolean issued;
 
 
     public Book() {
